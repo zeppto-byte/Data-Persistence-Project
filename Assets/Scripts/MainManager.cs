@@ -74,6 +74,9 @@ public class MainManager : MonoBehaviour
         ScoreText.text = $"Score : {m_Points}";
     }
 
+    /// <summary>
+    /// End current game, check for high score and show button to exit.
+    /// </summary>
     public void GameOver()
     {
         // New high score!!!

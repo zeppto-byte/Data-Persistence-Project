@@ -17,6 +17,9 @@ public class MainUIHandler : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Return to the main menu.
+    /// </summary>
     public void ReturnToMenu()
     {
         SceneManager.LoadScene(0);
