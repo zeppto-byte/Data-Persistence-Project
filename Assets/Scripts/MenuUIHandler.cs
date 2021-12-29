@@ -42,6 +42,9 @@ public class MenuUIHandler : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Method to start new game, but loading the game scene.
+    /// </summary>
     public void StartGame()
     {
         // Make sure player name is saved, so it can be used in the game
@@ -57,6 +60,9 @@ public class MenuUIHandler : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    /// <summary>
+    /// Exit the game completely.
+    /// </summary>
     public void Exit()
     {
         DataManager.Instance.SaveScore();
