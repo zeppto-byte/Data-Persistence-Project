@@ -11,13 +11,16 @@ public class MainManager : MonoBehaviour
     public Rigidbody Ball;
 
     public Text ScoreText;
+    public Text HighScoreText;    
     public GameObject GameOverText;
+    public GameObject GameOverButton;
     
     private bool m_Started = false;
-    private int m_Points;
-    
     private bool m_GameOver = false;
 
+    private int m_Points;
+    private int m_HighScorePoints;
+    private string m_HighScoreUser;
     
     // Start is called before the first frame update
     void Start()
@@ -36,6 +39,9 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
+        m_HighScorePoints = DataManager.Instance.HighScorePoints;
+        m_HighScoreUser = DataManager.Instance.HighScoreUser;
+        HighScoreText.text = "Best Score : " + m_HighScoreUser + " : " + m_HighScorePoints.ToString();
     }
 
     private void Update()
@@ -70,7 +76,20 @@ public class MainManager : MonoBehaviour
 
     public void GameOver()
     {
+        // New high score!!!
+        if (m_Points > m_HighScorePoints)
+        {
+            // Update local variable
+            m_HighScorePoints = m_Points;
+            m_HighScoreUser = DataManager.Instance.CurrentUser;
+            HighScoreText.text = "Best Score : " + m_HighScoreUser + " : " + m_HighScorePoints.ToString();
+
+            // Update persistant data
+            DataManager.Instance.HighScorePoints = m_Points;
+            DataManager.Instance.HighScoreUser = m_HighScoreUser;
+        }
         m_GameOver = true;
         GameOverText.SetActive(true);
+        GameOverButton.SetActive(true);        
     }
 }
